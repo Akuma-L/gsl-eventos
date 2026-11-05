@@ -1,0 +1,116 @@
+/* ===== G.S.L extras: conejo detallado + escenario decorativo =====
+   Cargar DESPUÉS de styles.css:  <link rel="stylesheet" href="extras.css"> */
+
+:root{
+  --gsl-ink:#4a2c3a;
+  --gsl-pink:#ff6b8a;
+  --gsl-yellow:#ffd166;
+  --gsl-mint:#6fe3c1;
+  --gsl-sky:#7ad7f0;
+  --gsl-lilac:#b79cff;
+}
+
+/* el contenido siempre por encima de la decoración */
+.page{position:relative;z-index:1}
+
+/* ---------- Conejo principal ---------- */
+.bunny-hero{
+  position:relative;
+  width:clamp(130px,38vw,178px);
+  margin:-8px auto 2px;
+  animation:hero-bob 4.5s ease-in-out infinite;
+}
+.bunny-hero::before{            /* halo suave detrás */
+  content:"";position:absolute;inset:14% 6% 4%;
+  background:radial-gradient(circle,rgba(255,179,198,.55),rgba(255,179,198,0) 70%);
+  z-index:-1;
+}
+.bunny-hero svg{display:block;width:100%;height:auto;overflow:visible}
+.bunny-hero .ink{stroke:var(--gsl-ink);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+.bunny-hero .ink-line{fill:none;stroke:var(--gsl-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.bunny-hero .whisk{fill:none;stroke:var(--gsl-ink);stroke-width:1.6;stroke-linecap:round;opacity:.6}
+.bunny-hero .shine{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;opacity:.8}
+.hero-balloon{transform-origin:126px 108px;animation:balloon-sway 3.6s ease-in-out infinite}
+.hero-hat{transform-origin:82px 57px;animation:hat-wiggle 5s ease-in-out infinite}
+
+@keyframes hero-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes balloon-sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+@keyframes hat-wiggle{0%,86%,100%{transform:rotate(0)}91%{transform:rotate(-6deg)}96%{transform:rotate(4deg)}}
+
+/* ---------- Escenario decorativo ---------- */
+.scene{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.scene *,.scene *::before,.scene *::after{position:absolute}
+
+.cloud{
+  height:var(--h,34px);width:var(--w,110px);border-radius:999px;
+  background:rgba(255,255,255,.75);
+  box-shadow:0 6px 0 rgba(255,255,255,.35);
+  animation:cloud-drift var(--t,60s) linear infinite;
+  animation-delay:var(--d,0s);
+  left:-160px;top:var(--y,12%);
+}
+.cloud::before,.cloud::after{content:"";background:inherit;border-radius:50%}
+.cloud::before{width:46%;height:150%;left:14%;bottom:30%}
+.cloud::after{width:36%;height:120%;right:12%;bottom:35%}
+@keyframes cloud-drift{to{transform:translateX(calc(100vw + 340px))}}
+
+.balloon{
+  width:var(--s,38px);height:calc(var(--s,38px)*1.22);
+  border-radius:50% 50% 48% 48%;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.75) 0 12%,transparent 13%),var(--c,var(--gsl-pink));
+  left:var(--x,5%);bottom:var(--y,6%);
+  opacity:.85;
+  transform-origin:50% 100%;
+  animation:balloon-float var(--t,7s) ease-in-out infinite;
+  animation-delay:var(--d,0s);
+}
+.balloon::after{                 /* cuerda */
+  content:"";left:50%;top:100%;width:2px;height:calc(var(--s,38px)*1.5);
+  background:linear-gradient(rgba(74,44,58,.45),transparent);
+}
+@keyframes balloon-float{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-22px) rotate(3deg)}
+}
+
+.star{
+  width:var(--s,18px);height:var(--s,18px);
+  left:var(--x);top:var(--y);
+  background:var(--c,var(--gsl-yellow));
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
+  animation:twinkle var(--t,3s) ease-in-out infinite;
+  animation-delay:var(--d,0s);
+}
+@keyframes twinkle{0%,100%{transform:scale(.7) rotate(0);opacity:.45}50%{transform:scale(1.1) rotate(25deg);opacity:1}}
+
+.heart{
+  left:var(--x);top:var(--y);
+  width:var(--s,14px);height:var(--s,14px);
+  background:var(--c,var(--gsl-pink));
+  transform:rotate(-45deg);opacity:.7;
+  animation:heart-pulse var(--t,3.4s) ease-in-out infinite;
+  animation-delay:var(--d,0s);
+}
+.heart::before,.heart::after{content:"";width:100%;height:100%;border-radius:50%;background:inherit}
+.heart::before{left:50%;top:0}
+.heart::after{left:0;top:-50%}
+@keyframes heart-pulse{0%,100%{transform:rotate(-45deg) scale(.85)}50%{transform:rotate(-45deg) scale(1.1)}}
+
+.bit{                            /* confeti que cae (lo genera script.js) */
+  top:-16px;width:var(--w,8px);height:var(--h,12px);
+  border-radius:2px;background:var(--c);opacity:.8;
+  animation:bit-fall var(--t,14s) linear infinite;
+  animation-delay:var(--d,0s);
+}
+@keyframes bit-fall{
+  0%{transform:translate3d(0,-20px,0) rotate(0)}
+  100%{transform:translate3d(var(--dx,30px),calc(100vh + 40px),0) rotate(540deg)}
+}
+
+@media (max-width:600px){
+  .scene .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .bunny-hero,.hero-balloon,.hero-hat,.cloud,.balloon,.star,.heart,.bit{animation:none!important}
+  .bit{display:none}
+}
