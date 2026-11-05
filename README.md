@@ -31,16 +31,6 @@ El diseño incorpora elementos gráficos minimalistas y una identidad visual ale
 
 [Visitar G.S.L Eventos infantiles](https://akuma-l.github.io/gsl-eventos/)
 
-## Estructura del proyecto
-
-```text
-gsl-eventos/
-├── index.html
-├── styles.css
-├── script.js
-└── README.md
-```
-
 ## Autor
 
 **Akuma-L**
