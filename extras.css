@@ -2,12 +2,13 @@
    Cargar DESPUÉS de styles.css:  <link rel="stylesheet" href="extras.css"> */
 
 :root{
-  --gsl-ink:#4a2c3a;
-  --gsl-pink:#ff6b8a;
-  --gsl-yellow:#ffd166;
-  --gsl-mint:#6fe3c1;
-  --gsl-sky:#7ad7f0;
-  --gsl-lilac:#b79cff;
+  /* mismos colores que tu styles.css; la tinta del conejo = trazo de los conejitos de abajo */
+  --gsl-ink:#8c79a4;
+  --gsl-pink:#ff6689;
+  --gsl-yellow:#ffda62;
+  --gsl-mint:#ffad55;   /* (naranja de tu paleta) */
+  --gsl-sky:#68c9ed;
+  --gsl-lilac:#a98bff;
 }
 
 /* el contenido siempre por encima de la decoración */
@@ -16,18 +17,18 @@
 /* ---------- Conejo principal ---------- */
 .bunny-hero{
   position:relative;
-  width:clamp(130px,38vw,178px);
+  width:clamp(120px,34vw,150px);
   margin:-8px auto 2px;
   animation:hero-bob 4.5s ease-in-out infinite;
 }
 .bunny-hero::before{            /* halo suave detrás */
   content:"";position:absolute;inset:14% 6% 4%;
-  background:radial-gradient(circle,rgba(255,179,198,.55),rgba(255,179,198,0) 70%);
+  background:radial-gradient(circle,rgba(255,102,137,.22),rgba(255,102,137,0) 70%);
   z-index:-1;
 }
 .bunny-hero svg{display:block;width:100%;height:auto;overflow:visible}
-.bunny-hero .ink{stroke:var(--gsl-ink);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
-.bunny-hero .ink-line{fill:none;stroke:var(--gsl-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.bunny-hero .ink{stroke:var(--gsl-ink);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.bunny-hero .ink-line{fill:none;stroke:var(--gsl-ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .bunny-hero .whisk{fill:none;stroke:var(--gsl-ink);stroke-width:1.6;stroke-linecap:round;opacity:.6}
 .bunny-hero .shine{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;opacity:.8}
 .hero-balloon{transform-origin:126px 108px;animation:balloon-sway 3.6s ease-in-out infinite}

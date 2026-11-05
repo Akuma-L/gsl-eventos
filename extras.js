@@ -2,7 +2,7 @@
 (() => {
   const scene = document.querySelector('.scene');
   if (!scene || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const colors = ['#ff6b8a', '#ffd166', '#6fe3c1', '#7ad7f0', '#b79cff'];
+  const colors = ['#ff6689', '#ffda62', '#ffad55', '#68c9ed', '#a98bff'];
   const total = innerWidth < 600 ? 10 : 18;
   for (let i = 0; i < total; i++) {
     const b = document.createElement('i');
